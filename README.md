@@ -11,6 +11,7 @@ This project includes a simple visual environment (`Vision1Env.py`) with [Gymnas
 Observation Size = Scene Image<br> Size = Grid Size × Scene Size<br>
 Stage Image Size = ½ Scene Image Size<br>
 Visual objects are displayed in the Stage.</p>
+  
 The project also includes a simple agent (`Vision1.py`) that directs its gaze to the most salient object in the observation by a sending saccade command to the environment.  It uses [BriCA](https://github.com/wbap/BriCA1) (a framework for Brain-inspired Computing Architecture) and [OpenCV](https://pypi.org/project/opencv-python/) for image processing.
 
 ### Saliency calculation
