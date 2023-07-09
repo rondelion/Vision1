@@ -7,8 +7,7 @@ Human vision uses saccades that direct the gaze to a salient part in the visual 
 
 This project includes a simple visual environment (`Vision1Env.py`) with [Gymnasium](https://gymnasium.farama.org).  It gives an observation of visual objects (circles) with varying sizes and brightness.  The environment receives saccade commands to move the gaze.  It uses [PyGame](https://www.pygame.org/news) to render the observation.  
 <p align="center">
-<img src="/Vision1.png" width="500px"/></p>
-<p align="center"><strong>Fig.1</strong><br>
+<img src="/Vision1.png" width="500px"/><br><strong>Fig.1</strong><br>
 Observation Size = Scene Image<br> Size = Grid Size × Scene Size<br>
 Stage Image Size = ½ Scene Image Size<br>
 Visual objects are displayed in the Stage.</p>
