@@ -7,11 +7,11 @@ Human vision uses saccades that direct the gaze to a salient part in the visual 
 
 This project includes a simple visual environment (`Vision1Env.py`) with [Gymnasium](https://gymnasium.farama.org).  It gives an observation of visual objects (circles) with varying sizes and brightness.  The environment receives saccade commands to move the gaze.  It uses [PyGame](https://www.pygame.org/news) to render the observation.  
 <p align="center">
-<img src="/Vision1.png" width="500px"/>  
-<strong>Fig.1</strong><br>Observation Size = Scene Image<br> Size = Grid Size × Scene Size<br>
+<img src="/Vision1.png" width="500px"/></p>
+<p align="center"><strong>Fig.1</strong><br>
+Observation Size = Scene Image<br> Size = Grid Size × Scene Size<br>
 Stage Image Size = ½ Scene Image Size<br>
 Visual objects are displayed in the Stage.</p>
-<br>
 The project also includes a simple agent (`Vision1.py`) that directs its gaze to the most salient object in the observation by a sending saccade command to the environment.  It uses [BriCA](https://github.com/wbap/BriCA1) (a framework for Brain-inspired Computing Architecture) and [OpenCV](https://pypi.org/project/opencv-python/) for image processing.
 
 ### Saliency calculation
