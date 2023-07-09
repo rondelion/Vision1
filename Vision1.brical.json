@@ -1,0 +1,162 @@
+{
+ "Header": {
+  "Type": "A",
+  "Name": "Vision1",
+  "Base": "Vision1",
+  "Comment": "An agent with minimal active vision"
+ },
+ "Modules": [
+  {
+   "Name": "CognitiveArchitecture",
+   "Comment": "Agent:Move the gaze to the most salient part",
+   "SubModules": [
+    "Periphery2Saliency",
+    "PriorityMap2Gaze"
+   ],
+   "Ports": [
+    {
+     "Name": "observation",
+     "Type": "Input",
+     "Shape": [
+      36300
+     ]
+    },
+    {
+     "Name": "token_in",
+     "Type": "Input",
+     "Shape": [
+      1
+     ]
+    },
+    {
+     "Name": "action",
+     "Type": "Output",
+     "Shape": [
+      2
+     ]
+    },
+    {
+     "Name": "token_out",
+     "Type": "Output",
+     "Shape": [
+      1
+     ]
+    }
+   ]
+  },
+  {
+   "Name": "Periphery2Saliency",
+   "Comment": "Periphery vision to saliency:Generates the saliency map",
+   "ImplClass": "Vision1.Periphery2Saliency",
+   "Ports": [
+    {
+     "Name": "observation",
+     "Type": "Input",
+     "Shape": [
+      36300
+     ]
+    },
+    {
+     "Name": "token_in",
+     "Type": "Input",
+     "Shape": [
+      1
+     ]
+    },
+    {
+     "Name": "saliency_map",
+     "Type": "Output",
+     "Shape": [
+      121
+     ]
+    },
+    {
+     "Name": "token_out",
+     "Type": "Output",
+     "Shape": [
+      1
+     ]
+    }
+   ]
+  },
+  {
+   "Name": "PriorityMap2Gaze",
+   "Comment": "Saliency to gaze control:Generates gaze control signals from the saliency map",
+   "ImplClass": "Vision1.PriorityMap2Gaze",
+   "Ports": [
+    {
+     "Name": "saliency_map",
+     "Type": "Input",
+     "Shape": [
+      121
+     ]
+    },
+    {
+     "Name": "token_in",
+     "Type": "Input",
+     "Shape": [
+      1
+     ]
+    },
+    {
+     "Name": "action",
+     "Type": "Output",
+     "Shape": [
+      2
+     ]
+    },
+    {
+     "Name": "token_out",
+     "Type": "Output",
+     "Shape": [
+      1
+     ]
+    }
+   ]
+  }
+ ],
+ "Connections": [
+  {
+   "Name": "CognitiveArchitecture-Periphery2Saliency",
+   "FromModule": "CognitiveArchitecture",
+   "FromPort": "observation",
+   "ToModule": "Periphery2Saliency",
+   "ToPort": "observation"
+  },
+  {
+   "Name": "CognitiveArchitecture-Periphery2Saliency",
+   "FromModule": "CognitiveArchitecture",
+   "FromPort": "token_in",
+   "ToModule": "Periphery2Saliency",
+   "ToPort": "token_in"
+  },
+  {
+   "Name": "Periphery2Saliency-PriorityMap2Gaze",
+   "FromModule": "Periphery2Saliency",
+   "FromPort": "saliency_map",
+   "ToModule": "PriorityMap2Gaze",
+   "ToPort": "saliency_map"
+  },
+  {
+   "Name": "Periphery2Saliency-PriorityMap2Gaze",
+   "FromModule": "Periphery2Saliency",
+   "FromPort": "token_out",
+   "ToModule": "PriorityMap2Gaze",
+   "ToPort": "token_in"
+  },
+  {
+   "Name": "PriorityMap2Gaze-CognitiveArchitecture",
+   "FromModule": "PriorityMap2Gaze",
+   "FromPort": "action",
+   "ToModule": "CognitiveArchitecture",
+   "ToPort": "action"
+  },
+  {
+   "Name": "PriorityMap2Gaze-CognitiveArchitecture",
+   "FromModule": "PriorityMap2Gaze",
+   "FromPort": "token_out",
+   "ToModule": "CognitiveArchitecture",
+   "ToPort": "token_out"
+  }
+ ]
+}

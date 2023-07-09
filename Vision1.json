@@ -1,0 +1,24 @@
+{
+  "env": {
+    "name": "Vision1Env-v0",
+    "stage_size": 5,
+    "grid_size": 10,
+    "cardinality": 2,
+    "levels": 5,
+    "render_wait": 1000,
+    "episode_length": 5,
+    "center_dot": false
+  },
+  "agent": {
+    "Periphery2Saliency": {
+      "edge_detection": "Laplacian",
+      "weights": [5, 1, 2]
+    },
+    "PriorityMap2Gaze": {
+      "decrement_rate": 0.5,
+      "threshold": 2,
+      "noise_max": 1
+    }
+  },
+  "tf_logidir": "logs/tf/"
+}
