@@ -59,4 +59,8 @@ Required files:
 * `Vision1.json`: config file
 * `Vision1.brical.json` : architecture description for BriCAL
 
-![Movie](/Vision1.mp4)
+Video:  
+
+https://github.com/rondelion/Vision1/assets/11871187/14ffb56b-17d1-4870-87ad-5870cc513bfe
+
+
