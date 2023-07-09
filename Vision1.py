@@ -160,7 +160,7 @@ def main():
     agent = agent_builder.create_gym_agent(nb, model, env)
     scheduler = brica1.VirtualTimeSyncScheduler(agent)
 
-    for i in range(5):  # train["episode_count"]):
+    for i in range(train["episode_count"]):
         last_token = 0
         print ('Cycle: ', i)
         '''
