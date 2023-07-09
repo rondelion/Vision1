@@ -58,3 +58,5 @@ register(
 Required files:
 * `Vision1.json`: config file
 * `Vision1.brical.json` : architecture description for BriCAL
+
+![Movie](/Vision1.mp4)
