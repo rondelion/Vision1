@@ -20,7 +20,7 @@ The project also includes a simple agent (`Vision1.py`) that directs its gaze to
 The weighted sum of the following:
 * Brightness (intensity map)
 * Spatial integral and differential in the following order:
-    1. ½ size reduction (resize -- integral)
+    1. ½ size reduction (peripheral vision -- integral)
     2. edge detection (differential)
     3. size reduction (resize -- integral)
 * Temporal differential  
@@ -29,7 +29,7 @@ brightness increase from the previous intensity map
 ### Saccade
 `PriorityMap2Gaze`  
   
-Saccade to the position in the saliency map after accumulation (temporal integral) with a given decay constant.
+Saccade to the position having the maximal intensity in the saliency map with noise added after accumulation with a given decay constant (temporal integral).
 
 
 ## How to Install
