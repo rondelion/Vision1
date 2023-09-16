@@ -19,7 +19,7 @@ class Periphery2Saliency(brica1.brica_gym.Component):
         super().__init__()
         self.grid_size = config["env"]["grid_size"]
         self.stage_size = config["env"]["stage_size"]
-        self.scene_size = self.stage_size * 2 + 1
+        self.scene_size = self.stage_size * 2 - 1
         self.scene_image_size = self.scene_size * self.grid_size
         self.mid_img_size = self.scene_image_size // 2
         self.tf_log_writer = config['train']["tf_log_writer"]
@@ -83,7 +83,7 @@ class PriorityMap2Gaze(brica1.brica_gym.Component):
         self.decrement_rate = config['agent']['PriorityMap2Gaze']['decrement_rate']
         self.threshold = config['agent']['PriorityMap2Gaze']['threshold']
         self.noise_max = config['agent']['PriorityMap2Gaze']['noise_max']
-        self.scene_size = self.stage_size * 2 + 1
+        self.scene_size = self.stage_size * 2 - 1
         self.scene_image_size = self.scene_size * self.grid_size
         self.make_in_port('saliency_map', self.scene_size * self.scene_size)
         self.make_in_port('token_in', 1)
@@ -98,7 +98,8 @@ class PriorityMap2Gaze(brica1.brica_gym.Component):
         am = np.argmax(self.state)
         saccade = np.zeros(2, dtype=np.int8)
         if np.max(sm) > self.threshold:
-            saccade = (am // self.scene_size - self.stage_size, am % self.scene_size - self.stage_size)
+            center = self.scene_size // 2
+            saccade = (am // self.scene_size - center, am % self.scene_size - center)
             self.state = np.zeros((self.scene_size, self.scene_size), dtype=np.int8)
         self.results['action'] = saccade
 

@@ -21,7 +21,7 @@ class Vision1Env(gym.Env):
         self.render_wait = config["render_wait"]
         self.episode_length = config["episode_length"]
         self.center_dot = config["center_dot"]
-        self.scene_size = self.stage_size * 2 + 1
+        self.scene_size = self.stage_size * 2 - 1
         self.scene_image_size = self.scene_size * self.grid_size
         self.max_jump = self.scene_size - self.stage_size
         self.pos_xy = np.zeros((self.cardinality, 2), dtype=np.int8)
@@ -47,9 +47,10 @@ class Vision1Env(gym.Env):
         saccade = np.array(saccade)
         print("saccade:", saccade)
         gaze = self.gaze + saccade
+        stage_corner = (self.scene_size - self.stage_size) // 2
         for i in range(self.cardinality):
-            center_x = (self.stage_size // 2 + self.pos_xy[i, 0] + 1) * self.grid_size + self.grid_size // 2
-            center_y = (self.stage_size // 2 + self.pos_xy[i, 1] + 1) * self.grid_size + self.grid_size // 2
+            center_x = (stage_corner + self.pos_xy[i, 0]) * self.grid_size + self.grid_size // 2
+            center_y = (stage_corner + self.pos_xy[i, 1]) * self.grid_size + self.grid_size // 2
             gfxdraw.filled_circle(self.scene, center_x, center_y, self.object_size[i],
                                   (0, 255 * self.brightness[i] // 5, 0))
         img = pygame.surfarray.array3d(self.scene)
