@@ -101,7 +101,7 @@ class PriorityMap2Gaze(brica1.brica_gym.Component):
             center = self.scene_size // 2
             saccade = (am // self.scene_size - center, am % self.scene_size - center)
             self.state = np.zeros((self.scene_size, self.scene_size), dtype=np.int8)
-        self.results['action'] = saccade
+        self.results['action'] = np.asarray(saccade)
 
     def reset(self):
         self.token = 0
