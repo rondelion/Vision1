@@ -56,13 +56,14 @@ class Periphery2Saliency(brica1.brica_gym.Component):
         # Adding intensity map, edge_map, and increment
         weights = self.weights / np.sum(self.weights)
         img = (intensity_map * weights[0] + edge_map * weights[1] + increment * weights[2]).astype(np.uint8)
-        # Dump images for TensorBoard
-        dump_img = np.reshape(cv2.resize(img, dsize=(self.mid_img_size, self.mid_img_size),
-                                                     interpolation=cv2.INTER_AREA),
-                                          (-1, self.mid_img_size, self.mid_img_size, 1))
-        log_images = np.append(log_images, dump_img, axis=0)
-        with self.tf_log_writer.as_default():
-            tf.summary.image("Training data", log_images, max_outputs=2, step=0)
+        if self.tf_log_writer is not None:
+            # Dump images for TensorBoard
+            dump_img = np.reshape(cv2.resize(img, dsize=(self.mid_img_size, self.mid_img_size),
+                                                         interpolation=cv2.INTER_AREA),
+                                              (-1, self.mid_img_size, self.mid_img_size, 1))
+            log_images = np.append(log_images, dump_img, axis=0)
+            with self.tf_log_writer.as_default():
+                tf.summary.image("Training data", log_images, max_outputs=2, step=0)
         self.results['saliency_map'] = img
 
     def reset(self):
