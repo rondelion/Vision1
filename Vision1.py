@@ -22,7 +22,7 @@ class Periphery2Saliency(brica1.brica_gym.Component):
         self.scene_size = self.stage_size * 2 - 1
         self.scene_image_size = self.scene_size * self.grid_size
         self.mid_img_size = self.scene_image_size // 2
-        self.tf_log_writer = config['train']["tf_log_writer"]
+        self.tf_log_writer = config['train']["tf_log_writer"] if "tf_log_writer" in config['train'] else None
         self.edge_detection = config['agent']['Periphery2Saliency']['edge_detection']
         self.weights = np.array(config['agent']['Periphery2Saliency']['weights'])
         self.make_in_port('observation', self.scene_image_size * self.scene_image_size * 3)
