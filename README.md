@@ -44,7 +44,7 @@ Saccade to the position having the maximal intensity in the saliency map with no
 * Install gymnasium, tensorflow (for TensorBoard), cv2 (OpenCV), and pygame for Python
 
 * Register the environment to Gym
-    * Place `MinWMEnvA.py` file in `gymnasium/envs/myenv`  
+    * Place `Vision1Env.py` file in `gymnasium/envs/myenv`  
     (wherever Gym to be used is installed)
     * Add to `__init__.py` (located in the same folder)  
       `from gymnasium.envs.myenv.Vision1Env import Vision1Env`
